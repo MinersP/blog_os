@@ -1,17 +1,16 @@
-#![cfg_attr(not(test), no_std)]
+#![no_std]
 #![cfg_attr(not(test), no_main)] // disable all Rust-level entry points
-#![cfg_attr(test, allow(unused_imports))]
-
-mod vga_buffer;
+#![cfg_attr(test, allow(dead_code, unused_macros, unused_imports))]
 
 use core::panic::PanicInfo;
+use blog_os::println;
 
 //static HELLO: &[u8] = b"Hello World!";
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hellow World{}", "!");
-    panic!("Some panic message");
+    println!("Hello World{}", "!");
+
     loop {}
 }
 
