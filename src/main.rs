@@ -11,9 +11,12 @@ use blog_os::println;
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
 
+    blog_os::gdt::init();
     blog_os::interrupts::init_idt();
 
-    x86_64::instructions::int3();
+    unsafe {
+        *(0xdeadbeef as *mut u64) = 42;
+    }
 
     println!("It did not crash!");
     loop {}
